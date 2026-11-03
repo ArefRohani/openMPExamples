@@ -8,7 +8,7 @@ template <typename Function>
 double benchmark(Function function)
 {
     const double start = omp_get_wtime();
-    std::forward<Function>(function)();
+    function();
     const double end = omp_get_wtime();
     return end - start;
 }

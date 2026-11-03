@@ -1,7 +1,7 @@
-#include <omp.h>
-
 #include <array>
-#include <cstdio>
+#include <iostream>
+
+#include <omp.h>
 
 int main() {
     omp_set_dynamic(0);
@@ -16,9 +16,7 @@ int main() {
         results[thread_id] = local_value;
     }
 
-    for (int value : results) {
-        std::printf("%d ", value);
-    }
-    std::printf("\n");
-    return 0;
+    for (int value : results)
+        std::cout << value << '\n';
+    std::cout << '\n';
 }

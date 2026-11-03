@@ -3,9 +3,8 @@
 
 int main() {
     int counter = 0;
-    const int threads = omp_get_max_threads();
 
-#pragma omp parallel num_threads(threads) shared(counter)
+#pragma omp parallel num_threads(omp_get_max_threads()) shared(counter)
     {
         for (int count = 0; count < 10000; ++count) {
 #pragma omp atomic update

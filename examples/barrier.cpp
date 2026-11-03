@@ -1,9 +1,10 @@
+#include <array>
+#include <iostream>
+
 #include <omp.h>
 
-#include <array>
-#include <cstdio>
-
-int main() {
+int main()
+{
     omp_set_dynamic(0);
     std::array<int, 4> values{};
     std::array<int, 4> observed{};
@@ -18,9 +19,9 @@ int main() {
         observed[thread_id] = values[(thread_id + 1) % 4];
     }
 
-    for (int value : observed) {
-        std::printf("%d ", value);
+    for (int value : observed)
+    {
+        std::cout << value << '\n';
     }
-    std::printf("\n");
-    return 0;
+    std::cout << '\n';
 }

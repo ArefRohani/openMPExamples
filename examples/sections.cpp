@@ -1,28 +1,31 @@
-#include <cstdio>
+#include <iostream>
 
-int main() {
+int main()
+{
     int sum = 0;
     int product = 0;
     int difference = 0;
+
+    int a = 5;
+    int b = 20;
 
 #pragma omp parallel sections num_threads(3)
     {
 #pragma omp section
         {
-            sum = 20 + 5;
+            sum = a + b;
         }
 #pragma omp section
         {
-            product = 20 * 5;
+            product = a * b;
         }
 #pragma omp section
         {
-            difference = 20 - 5;
+            difference = a - b;
         }
     }
 
-    std::printf("Sum: %d\n", sum);
-    std::printf("Product: %d\n", product);
-    std::printf("Difference: %d\n", difference);
-    return 0;
+    std::cout << sum << '\n';
+    std::cout << product << '\n';
+    std::cout << difference << '\n';
 }

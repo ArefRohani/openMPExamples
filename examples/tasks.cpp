@@ -1,5 +1,5 @@
 #include <array>
-#include <cstdio>
+#include <iostream>
 
 int main()
 {
@@ -23,9 +23,6 @@ int main()
     }
 
     for (int value : squares)
-    {
-        std::printf("%d ", value);
-    }
-    std::printf("\n");
-    return 0;
+        std::cout << value << '\n';
+    std::cout << '\n';
 }

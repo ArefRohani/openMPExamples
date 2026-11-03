@@ -1,13 +1,14 @@
-#include <cstdio>
+#include <iostream>
 
-int main() {
+#include <omp.h>
+
+int main()
+{
     int sum = 0;
 
-#pragma omp parallel for num_threads(4) reduction(+:sum)
-    for (int value = 1; value <= 100; ++value) {
+#pragma omp parallel for num_threads(omp_get_max_threads()) reduction(+ : sum)
+    for (int value = 1; value <= 100; ++value)
         sum += value;
-    }
 
-    std::printf("Sum: %d\n", sum);
-    return 0;
+    std::cout << sum << '\n';
 }

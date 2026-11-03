@@ -1,9 +1,10 @@
-#include <cstdio>
+#include <iostream>
+#include <omp.h>
 
 int main() {
     int counter = 0;
 
-#pragma omp parallel num_threads(4) shared(counter)
+#pragma omp parallel num_threads(omp_get_max_threads()) shared(counter)
     {
         for (int count = 0; count < 10000; ++count) {
 #pragma omp critical
@@ -13,6 +14,5 @@ int main() {
         }
     }
 
-    std::printf("Counter: %d\n", counter);
-    return 0;
+    std::cout << counter << '\n';
 }
