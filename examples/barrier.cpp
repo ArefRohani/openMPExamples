@@ -1,27 +1,21 @@
-#include <array>
-#include <iostream>
-
 #include <omp.h>
+#include <stdio.h>
 
 int main()
 {
-    omp_set_dynamic(0);
-    std::array<int, 4> values{};
-    std::array<int, 4> observed{};
 
-#pragma omp parallel num_threads(4) shared(values, observed)
+    // Current number of active threads
+    printf("Num of threads is %d\n", omp_get_num_threads());
+
+#pragma omp parallel
     {
-        const int thread_id = omp_get_thread_num();
-        values[thread_id] = thread_id + 10;
+        // Current thread ID
+        printf("Thread ID: %d\n", omp_get_thread_num());
 
 #pragma omp barrier
-
-        observed[thread_id] = values[(thread_id + 1) % 4];
+        if (omp_get_thread_num() == 0)
+        {
+            printf("\nNumber of active threads: %d\n", omp_get_num_threads());
+        }
     }
-
-    for (int value : observed)
-    {
-        std::cout << value << '\n';
-    }
-    std::cout << '\n';
 }
